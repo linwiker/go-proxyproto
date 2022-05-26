@@ -6,7 +6,7 @@ package tlvparse
 import (
 	"regexp"
 
-	"github.com/pires/go-proxyproto"
+	"github.com/linwiker/go-proxyproto"
 )
 
 const (

@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/pires/go-proxyproto"
+	"github.com/linwiker/go-proxyproto"
 )
 
 // TODO: add httpclient example

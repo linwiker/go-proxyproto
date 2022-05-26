@@ -5,7 +5,7 @@ import (
 	"unicode"
 	"unicode/utf8"
 
-	"github.com/pires/go-proxyproto"
+	"github.com/linwiker/go-proxyproto"
 )
 
 const (

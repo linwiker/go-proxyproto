@@ -1,3 +1,3 @@
-module github.com/pires/go-proxyproto
+module github.com/linwiker/go-proxyproto
 
-go 1.13
+go 1.17
