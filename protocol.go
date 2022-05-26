@@ -2,6 +2,7 @@ package proxyproto
 
 import (
 	"bufio"
+	"errors"
 	"io"
 	"net"
 	"sync"
@@ -308,4 +309,39 @@ func (p *Conn) WriteTo(w io.Writer) (int64, error) {
 		return 0, p.readErr
 	}
 	return p.bufReader.WriteTo(w)
+}
+
+// SetKeepAlive sets whether the operating system should send
+// keep-alive messages on the connection.
+func (p *Conn) SetKeepAlive(keepalive bool) error {
+	if tcpconn, ok := p.TCPConn(); ok {
+		return tcpconn.SetKeepAlive(keepalive)
+	}
+	return errors.New("conn not tcpconn")
+}
+
+// SetKeepAlivePeriod sets period between keep-alives.
+func (p *Conn) SetKeepAlivePeriod(d time.Duration) error {
+	if tcpconn, ok := p.TCPConn(); ok {
+		return tcpconn.SetKeepAlivePeriod(d)
+	}
+	return errors.New("conn not tcpconn")
+}
+
+// SetWriteBuffer sets the size of the operating system's
+// transmit buffer associated with the connection.
+func (p *Conn) SetWriteBuffer(bytes int) error {
+	if tcpconn, ok := p.TCPConn(); ok {
+		return tcpconn.SetWriteBuffer(bytes)
+	}
+	return errors.New("conn not tcpconn")
+}
+
+// SetReadBuffer sets the size of the operating system's
+// receive buffer associated with the connection.
+func (p *Conn) SetReadBuffer(bytes int) error {
+	if tcpconn, ok := p.TCPConn(); ok {
+		return tcpconn.SetReadBuffer(bytes)
+	}
+	return errors.New("conn not tcpconn")
 }
